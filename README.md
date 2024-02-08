@@ -67,3 +67,25 @@ int main(void) {
 ```
 
 # Stack implementation
+
+- for navigating a stack and keeping track, we require a stack pointer
+```
+PSH 5   => [5]
+PSH 6   => [5, 6]
+ADD     => [5], var a = 6
+        => [], var a = 6, var b = 5
+        => [], var result = b + a {this is done backwards}
+        => [11]
+```
+- when `sp` is set to 1, we have an empty stack
+- order of addition to stack is important. We need to increment sp and then add value to stack
+
+```C
+case (instr):
+    PSH: {
+        sp++; // eg moving from -1 to 0
+        stack[sp] = prog[ip++];
+        break;
+    }
+
+```

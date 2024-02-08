@@ -1,8 +1,19 @@
 #include <stdbool.h>
-#include <wchar.h>
+#include <stdio.h>
 
 // defining program suggestions, utilising enum
 typedef enum { PSH, ADD, POP, SET, HLT } InstructionSet;
+typedef enum {
+  A,               // regisetr A
+  B,               // regisetr B
+  C,               // regisetr C
+  D,               // regisetr D
+  E,               // register E
+  IP,              // Instruction Pointer
+  SP,              // Stack Pointer
+  NUM_OF_REGISTERS // using this we get size of registers
+                   // even if more are added
+} Registers;
 
 /* Test Program */
 const int prog[] = {
@@ -13,8 +24,11 @@ const int prog[] = {
     HLT,    // halt execution
 };
 
-// defining instruction pointer
-int ip = 0;
+int stack[256]; // stack having 256 storage slots
+int registers[NUM_OF_REGISTERS];
+
+#define sp (registers[SP])
+#define ip (registers[IP])
 
 // running boolean
 bool running = true;
@@ -38,5 +52,27 @@ void eval(int instr) {
   case HLT:
     running = false;
     break;
+
+  case PSH: {
+    sp++;
+    stack[sp] = prog[ip++];
+    break;
+  }
+
+  case POP: {
+    // first store value
+    int val = stack[sp--];
+    printf("POP: %d\n", val);
+    break;
+  }
+
+  case ADD: {
+    int a = stack[sp--];
+    int b = stack[sp--];
+    int result = b + a;
+    sp++; // incase we are at sp = -1, we move to sp = 0
+    stack[sp] = result;
+    break;
+  }
   }
 }
