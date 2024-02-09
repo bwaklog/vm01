@@ -1,3 +1,5 @@
+Basic understanding learnt from [this article](http://web.archive.org/web/20200121100942/https://blog.felixangell.com/virtual-machine-in-c/)
+
 ## Instruction set
 
 - Registers : `A`, `B`, `C`, `D`, `E`, `F` are _general purpose_
