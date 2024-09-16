@@ -4,10 +4,10 @@
 // defining program suggestions, utilising enum
 typedef enum { PSH, ADD, POP, SET, HLT } InstructionSet;
 typedef enum {
-  A,               // regisetr A
-  B,               // regisetr B
-  C,               // regisetr C
-  D,               // regisetr D
+  A,               // register A
+  B,               // register B
+  C,               // register C
+  D,               // register D
   E,               // register E
   IP,              // Instruction Pointer
   SP,              // Stack Pointer
